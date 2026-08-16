@@ -87,3 +87,4 @@ def scrape_and_build(query: str, generate_id, Perfume):
         gender=scraped.get("gender"),
         concentration=None,
     )
+#
