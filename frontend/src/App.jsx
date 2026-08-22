@@ -18,7 +18,7 @@ return(<>
 <Route path = '/register' element = {<Register/>}/>
 <Route path = '/login' element = {<Login/>}/>
 <Route path = '/search' element = {<Search/>}/>
-<Route path = '/perfume' element = {<Perfume/>}/>
+<Route path = '/perfume/:perfumeId' element = {<Perfume/>}/>
 <Route path = '/collection' element = {<Collection/>}/>
 <Route path = '/wishlist' element = {<Wishlist/>}/>
 <Route path = '/wishlistdetails' element = {<WishlistDetails/>}/>
