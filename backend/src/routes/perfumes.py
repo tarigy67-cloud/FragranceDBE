@@ -40,12 +40,11 @@ def search_up_perfume(q: str):
 
 
 @router.get("/perfumes/{perfume_id}")
-def get_specific_perfume(perfumeID: str ):
+def get_specific_perfume(perfume_id: str):
     #assuming the perfume is already gonna be in the database because this function is to get it from a collection
-    perfume = session.query(Perfume).filter(Perfume.id == perfumeID).first()
+    perfume = session.query(Perfume).filter(Perfume.id == perfume_id).first()
 
+    if not perfume:
+        raise HTTPException(status_code=404, detail="Perfume not found")
 
-    return perfume
-
-
-
+    return perfume_to_dict(perfume)
