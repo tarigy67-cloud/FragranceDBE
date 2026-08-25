@@ -1,12 +1,8 @@
-import {Navigate} from 'react-router-dom'
+import Navbar from "./Navbar"
 
-
-function Home(){
-return(<>
-
-<h1>The home page is working
+export default function Home(){
+    return(<>
+    <Navbar/>
     
-</h1>
-</>)}
-
-export default Home
+    
+    homepage</>)}
