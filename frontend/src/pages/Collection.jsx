@@ -10,8 +10,7 @@ export default function Collection(){
 
 
     return(<>
-    <Navbar/>
+    <h1>User Collection</h1>
     
-    
-    Collection Page</>)
+    </>)
     }

@@ -38,12 +38,15 @@ export default function Search(){
 
 
 
-    <h1>{search} </h1>
+    <h2>Perfumes </h2>
     <div onClick = {() => navigate(`/perfume/${perfume.id}`)}>
     <img src={perfume.image} alt={perfume.name} />
     <br/>
     <p>{perfume.name}</p>
     </div>
+
+    <h2>Users but not right now </h2>
+    <div></div>
 
   </>)
 

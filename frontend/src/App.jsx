@@ -9,8 +9,8 @@ import Wishlist from './pages/Wishlist'
 import CreateWishlist from './pages/CreateWishlist.jsx'
 import AddedPerfume from './pages/AddedPerfume.jsx'
 import Profile from './pages/Profile.jsx'
-
-
+import SpecificWishlist from './pages/SpecificWishlist.jsx'
+import AddToWishlist from './pages/AddToWishlist.jsx'
 export default function App(){
   
 return(<>
@@ -25,6 +25,10 @@ return(<>
 <Route path = '/createwishlist' element = {<CreateWishlist/>}/>
 <Route path = '/addedPerfume' element = {<AddedPerfume/>}/>
 <Route path = '/profile' element = {<Profile/>}/>
+<Route path = '/specificwishlist/:wishlistID' element = {<SpecificWishlist/>}/>
+<Route path = '/addtowishlist/:perfumeID' element = {<AddToWishlist/>}/>
+
+
 
 
 </Routes>

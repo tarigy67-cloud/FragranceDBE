@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { User } from 'lucide-react'
+import { User, House } from 'lucide-react'
 import {useState,useEffect} from 'react'
 
 
@@ -11,7 +11,7 @@ function Navbar() {
     const token = localStorage.getItem('token')
     if (!token) {
       navigate('/login')
-    }},[navigate])
+    }},[])
 
   return (
     <>
@@ -71,10 +71,9 @@ function Navbar() {
       </style>
 
       <nav>
-        <img
+        <House
           onClick={() => navigate('/home')}
-          src="/logo.png"
-          alt="Logo"
+         
         />
 
         <div className="search">
@@ -89,9 +88,7 @@ function Navbar() {
           </button>
         </div>
 
-        <button onClick={() => navigate('/collection')}>
-          Collection
-        </button>
+       
 
         <button onClick={() => navigate('/wishlist')}>
           Wishlists
