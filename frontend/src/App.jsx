@@ -11,6 +11,7 @@ import AddedPerfume from './pages/AddedPerfume.jsx'
 import Profile from './pages/Profile.jsx'
 import SpecificWishlist from './pages/SpecificWishlist.jsx'
 import AddToWishlist from './pages/AddToWishlist.jsx'
+import WishlistPerfume from './pages/WishlistPerfume.jsx'
 export default function App(){
   
 return(<>
@@ -20,6 +21,7 @@ return(<>
 <Route path = '/login' element = {<Login/>}/>
 <Route path = '/search/:search' element = {<Search/>}/>
 <Route path = '/perfume/:perfumeId' element = {<Perfume/>}/>
+<Route path = '/wishlistperfume/:wishlistID/:perfumeId' element = {<WishlistPerfume/>}/>
 <Route path = '/collection' element = {<Collection/>}/>
 <Route path = '/wishlist' element = {<Wishlist/>}/>
 <Route path = '/createwishlist' element = {<CreateWishlist/>}/>

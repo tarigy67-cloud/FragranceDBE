@@ -19,6 +19,9 @@ export default function Search(){
             if (!response.ok){throw new Error("Perfume Not Found")}
             const data = await(response.json())
             setPerfume(data)
+
+
+          
         }
         catch(error){
             setError(error)

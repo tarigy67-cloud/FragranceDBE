@@ -1,8 +1,9 @@
 import Navbar from "./Navbar"
 import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { useParams,useNavigate } from "react-router-dom"
 
 export default function SpecificWishlist() {
+    const navigate = useNavigate()
     const { wishlistID } = useParams()
     const [wishlist, setWishlist] = useState(null)
     const token = localStorage.getItem("token")
@@ -31,11 +32,28 @@ export default function SpecificWishlist() {
     return (
         <>
             <Navbar />
-
+        <button onClick = {() => {navigate(-1)}}> ←</button>
             {wishlist && (
                 <>
                     <h1>{wishlist.name}</h1>
-                    <p>{wishlist.id}</p>
+
+                    <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
+
+                    {wishlist.perfumes.map((perfume) => (
+
+                        <div key={perfume.id} onClick={() => navigate(`/wishlistperfume/${wishlistID}/${perfume.id}`)}>
+
+                            <img  style={{ width: "250px" }} src={perfume.image} alt={perfume.name} />
+
+                            <h2>{perfume.name}</h2>
+
+                            <h3>{perfume.brand}</h3>
+
+                        </div>
+
+                    ))}
+
+                    </div>
                 </>
             )}
         </>
