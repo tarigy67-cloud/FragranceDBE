@@ -56,17 +56,24 @@ def delete_wishlist(
         Wishlist.id == wishlist_id,
         Wishlist.user_id == current_user.id
     ).first()
-
     if wishlist is None:
         raise HTTPException(
             status_code=404,
             detail="Wishlist not found"
         )
-
+    # Delete all perfumes from the wishlist first
+    session.execute(
+        wishlist_items.delete().where(
+            wishlist_items.c.wishlist_id == wishlist_id
+        )
+    )
+    # Now delete the wishlist
     session.delete(wishlist)
     session.commit()
-
     return {"message": "Wishlist deleted successfully"}
+
+
+
 
 
 # Add perfume to wishlist
@@ -116,6 +123,7 @@ def add_to_wishlist(
             perfume_id=perfume_id
         )
     )
+    
 
     session.commit()
 
