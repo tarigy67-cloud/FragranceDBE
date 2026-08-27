@@ -26,6 +26,7 @@ def create_wishlist(
 
 
 # Get all my wishlists
+
 @router.get("/me/wishlists")
 def get_my_wishlists(
     current_user: User = Depends(get_current_user)
@@ -33,8 +34,16 @@ def get_my_wishlists(
     wishlists = session.query(Wishlist).filter(
         Wishlist.user_id == current_user.id
     ).all()
-
-    return wishlists
+    return [
+        {
+            "id": wishlist.id,
+            "name": wishlist.name,
+            "perfume_count": session.query(wishlist_items).filter(
+                wishlist_items.c.wishlist_id == wishlist.id
+            ).count()
+        }
+        for wishlist in wishlists
+    ]
 
 
 # Delete wishlist
