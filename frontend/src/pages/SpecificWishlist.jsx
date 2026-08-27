@@ -29,10 +29,29 @@ export default function SpecificWishlist() {
         displayWishlist()
     }, [wishlistID, token])
 
+
+
+    async function deleteWishlist(){
+        const response = await fetch(`http://localhost:9000/me/wishlists/${wishlistID}`,
+            {
+                method: "DELETE",
+                headers:{
+                    Authorization: `Bearer ${token}`
+
+                },
+            }
+        )
+        if (!response.ok){
+                console.error(response)
+        }
+        navigate(-1)
+    }
+
     return (
         <>
             <Navbar />
         <button onClick = {() => {navigate(-1)}}> ←</button>
+        <button onClick = {deleteWishlist}>Delete Collection</button>
             {wishlist && (
                 <>
                     <h1>{wishlist.name}</h1>
