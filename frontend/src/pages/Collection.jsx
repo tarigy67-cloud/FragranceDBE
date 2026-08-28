@@ -38,34 +38,32 @@ export default function Collection(){
     return(
         <>
 
-            <div className="collection-page">
+            <h1>User Collection</h1>
 
-                <h1>User Collection</h1>
+            <div className="collection-container">
 
-                <div className="collection-container">
+                {collection.map((perfume) => (
 
-                    {collection.map((perfume) => (
+                    <div
+                        key={perfume.id}
+                        onClick={() => navigate(`/collectionperfume/${perfume.id}`)}
+                        className="collection-perfume"
 
-                        <div
-                            key={perfume.id}
-                            onClick={() => navigate(`/collectionperfume/${perfume.id}`)}
-                            className="collection-perfume"
-                        >
+                        
+                    >
 
-                            <img
-                                src={perfume.image}
-                                alt={perfume.name}
-                                className="collection-perfume-image"
-                            />
+                        <img
+                            src={perfume.image}
+                            alt={perfume.name}
+                            className="collection-perfume-image"
+                        />
 
-                            <h2>{perfume.name}</h2>
-                            <h3>{perfume.brand}</h3>
+                        <h2>{perfume.name}</h2>
+                        <h3>{perfume.brand}</h3>
 
-                        </div>
+                    </div>
 
-                    ))}
-
-                </div>
+                ))}
 
             </div>
         </>

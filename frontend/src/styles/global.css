@@ -1,0 +1,354 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap');
+
+/* ============================================================
+   DESIGN TOKENS -- "Apothecary" theme
+   (Repeated at the top of every stylesheet in this folder so
+   each file is self-contained and order-independent.)
+   ============================================================ */
+:root {
+  --bg: #f5eee2;
+  --bg-alt: #efe4d2;
+  --surface: #fffaf2;
+  --surface-alt: #f1e5d3;
+
+  --ink: #2a1b13;
+  --ink-soft: #5d4a3d;
+  --muted: #9c8570;
+
+  --border: #e3d3ba;
+  --border-strong: #cfae7f;
+
+  --gold: #b8823f;
+  --gold-light: #d9ab6c;
+  --oxblood: #7a3226;
+  --oxblood-hover: #8f3c2c;
+
+  --nav-bg: #201713;
+  --nav-border: #3b2921;
+  --nav-ink: #f7eee4;
+
+  --danger: #a33b2c;
+  --danger-hover: #b8493a;
+  --success: #4c7a4f;
+
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 26px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 4px 14px rgba(63, 39, 25, 0.08);
+  --shadow-md: 0 10px 28px rgba(63, 39, 25, 0.12);
+  --shadow-lg: 0 20px 48px rgba(63, 39, 25, 0.16);
+
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* ============================================================
+   AUTH PAGES
+   Login and ForgotPassword render without a wrapper <div>, so
+   they're centered here by styling <body> itself, scoped with
+   :has() to only apply while one of those pages is mounted.
+   ============================================================ */
+
+body:has(.login-input),
+body:has(.forgot-password-input) {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12vh 20px 60px;
+    background: var(--bg);
+    text-align: center;
+}
+
+body:has(.login-input) h1,
+body:has(.forgot-password-input) h1 {
+    margin-bottom: 26px;
+    font-size: 36px;
+}
+
+body:has(.login-input) h3,
+body:has(.forgot-password-input) h3 {
+    margin: 22px 0 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--muted);
+}
+
+body:has(.login-input) br,
+body:has(.forgot-password-input) br {
+    display: none;
+}
+
+.login-input,
+.forgot-password-input {
+    display: block;
+    width: 300px;
+    max-width: 100%;
+    padding: 12px 16px;
+    margin: 0 0 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    color: var(--ink);
+    font-family: var(--font-body);
+    box-sizing: border-box;
+    outline: none;
+}
+
+.login-input:focus,
+.forgot-password-input:focus {
+    border-color: var(--gold);
+}
+
+.login-button,
+.forgot-password-button {
+    display: block;
+    width: 300px;
+    max-width: 100%;
+    margin: 6px 0;
+    padding: 12px 16px;
+    border: none;
+    border-radius: var(--radius-pill);
+    background: var(--oxblood);
+    color: white;
+    font-weight: 600;
+    font-family: var(--font-body);
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.login-button:hover,
+.forgot-password-button:hover {
+    background: var(--oxblood-hover);
+}
+
+.login-button:nth-of-type(2),
+.forgot-password-button:nth-of-type(2) {
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--ink-soft);
+}
+
+.login-button:nth-of-type(2):hover,
+.forgot-password-button:nth-of-type(2):hover {
+    background: var(--surface);
+}
+
+.register-page,
+.reset-password-page,
+.verify-email-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12vh 20px 60px;
+    background: var(--bg);
+    text-align: center;
+}
+
+.register-page h3 {
+    margin: 22px 0 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--muted);
+}
+
+.verify-email-page p {
+    max-width: 340px;
+    margin: 0 0 22px;
+    color: var(--muted);
+}
+
+.register-input,
+.reset-password-input,
+.verify-email-input {
+    display: block;
+    width: 300px;
+    max-width: 100%;
+    padding: 12px 16px;
+    margin: 0 0 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    color: var(--ink);
+    font-family: var(--font-body);
+    box-sizing: border-box;
+    outline: none;
+}
+
+.register-input:focus,
+.reset-password-input:focus,
+.verify-email-input:focus {
+    border-color: var(--gold);
+}
+
+.register-button,
+.reset-password-button,
+.verify-email-button {
+    display: block;
+    width: 300px;
+    max-width: 100%;
+    margin: 6px 0;
+    padding: 12px 16px;
+    border: none;
+    border-radius: var(--radius-pill);
+    background: var(--oxblood);
+    color: white;
+    font-weight: 600;
+    font-family: var(--font-body);
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.register-button:hover,
+.reset-password-button:hover,
+.verify-email-button:hover {
+    background: var(--oxblood-hover);
+}
+
+.register-button:last-of-type {
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--ink-soft);
+}
+
+.register-button:last-of-type:hover {
+    background: var(--surface);
+}
+
+/* ============================================================
+   SEARCH PAGE
+   ============================================================ */
+
+.search-page {
+    min-height: 100vh;
+    padding: 40px 6% 80px;
+    background: var(--bg);
+}
+
+.search-page h2 {
+    margin: 0 0 20px;
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: 24px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+}
+
+.search-page h2:not(:first-of-type) {
+    margin-top: 40px;
+}
+
+.search-perfume {
+    cursor: pointer;
+    width: 230px;
+    padding: 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    transition: 0.25s;
+}
+
+.search-perfume:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-strong);
+}
+
+.search-perfume-image {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    background: var(--surface-alt);
+    border-radius: var(--radius-sm);
+}
+
+.search-perfume-name {
+    margin: 12px 0 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+}
+
+/* ============================================================
+   "Change wishlist name" modal
+   ============================================================ */
+
+.change-wishlist-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(30, 20, 14, 0.55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.change-wishlist-modal {
+    position: relative;
+    background: var(--surface);
+    padding: 34px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    width: 400px;
+    max-width: 100%;
+}
+
+.change-wishlist-modal h2 {
+    margin: 0 0 18px;
+    color: var(--ink);
+    font-family: var(--font-display);
+    padding-right: 24px;
+}
+
+.change-wishlist-close-button {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    left: auto;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font-size: 22px;
+    line-height: 1;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.change-wishlist-close-button:hover {
+    background: var(--surface-alt);
+    color: var(--ink);
+    transform: none;
+}
+
+.change-wishlist-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.change-wishlist-buttons button {
+    background: var(--oxblood);
+    color: white;
+    border: none;
+    border-radius: var(--radius-pill);
+    padding: 11px 22px;
+    font-weight: 600;
+    font-family: var(--font-body);
+    cursor: pointer;
+}
+
+.change-wishlist-buttons button:hover {
+    background: var(--oxblood-hover);
+}

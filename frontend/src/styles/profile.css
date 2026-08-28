@@ -1,0 +1,264 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    --bg: #f5eee2;
+    --surface: #fffaf2;
+    --surface-alt: #f1e5d3;
+
+    --ink: #2a1b13;
+    --ink-soft: #5d4a3d;
+    --muted: #9c8570;
+
+    --border: #e3d3ba;
+    --gold: #b8823f;
+    --oxblood: #7a3226;
+    --oxblood-hover: #8f3c2c;
+
+    --radius-lg: 28px;
+    --radius-pill: 999px;
+
+    --shadow-md: 0 12px 35px rgba(63, 39, 25, 0.12);
+    --shadow-lg: 0 25px 60px rgba(63, 39, 25, 0.16);
+
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+
+/* =========================
+   PROFILE PAGE
+   ========================= */
+
+.profile-page {
+    min-height: calc(100vh - 70px);
+    padding: 70px 20px 100px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(255, 255, 255, 0.65),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(184, 130, 63, 0.12),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #f5ead9 0%,
+            #ead7bd 100%
+        );
+
+    font-family: var(--font-body);
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   PROFILE CARD
+   ========================= */
+
+.profile-information {
+    width: 100%;
+    max-width: 560px;
+
+    padding: 45px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    background: rgba(255, 250, 242, 0.95);
+    border: 1px solid rgba(42, 27, 19, 0.08);
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-lg);
+}
+
+
+/* =========================
+   PROFILE PICTURE
+   ========================= */
+
+.profile-picture {
+    width: 140px;
+    height: 140px;
+
+    margin-bottom: 24px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+    border: 6px solid #fffaf2;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d8c4aa,
+            #b99670
+        );
+
+    box-shadow:
+        0 10px 28px rgba(42, 27, 19, 0.18);
+}
+
+
+/* =========================
+   USERNAME
+   ========================= */
+
+.profile-information h1 {
+    margin: 0;
+
+    color: var(--ink);
+
+    font-family: var(--font-display);
+    font-size: 42px;
+    font-weight: 600;
+
+    letter-spacing: -0.8px;
+}
+
+
+/* =========================
+   BIO
+   ========================= */
+
+.profile-bio {
+    max-width: 430px;
+
+    margin: 12px 0 18px;
+
+    color: var(--ink-soft);
+
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+
+/* =========================
+   PERFUME COUNT
+   ========================= */
+
+.profile-perfumes {
+    margin: 0;
+
+    color: var(--gold);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+
+/* =========================
+   ACTION BUTTONS
+   ========================= */
+
+.profile-actions {
+    width: 100%;
+    max-width: 560px;
+
+    display: flex;
+    gap: 12px;
+
+    margin-top: 20px;
+}
+
+
+.profile-button {
+    flex: 1;
+
+    height: 48px;
+
+    border-radius: var(--radius-pill);
+
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* EDIT */
+
+.profile-button:first-child {
+    border: 1px solid var(--oxblood);
+    background: var(--oxblood);
+    color: white;
+}
+
+.profile-button:first-child:hover {
+    background: var(--oxblood-hover);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(122, 50, 38, 0.2);
+}
+
+
+/* LOG OUT */
+
+.profile-button:last-child {
+    border: 1px solid #d8c4aa;
+    background: rgba(255, 250, 242, 0.8);
+    color: var(--ink-soft);
+}
+
+.profile-button:last-child:hover {
+    background: var(--surface-alt);
+
+    color: var(--ink);
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 600px) {
+
+    .profile-page {
+        padding: 45px 15px 70px;
+    }
+
+    .profile-information {
+        padding: 35px 25px;
+        border-radius: 24px;
+    }
+
+    .profile-picture {
+        width: 120px;
+        height: 120px;
+    }
+
+    .profile-information h1 {
+        font-size: 34px;
+    }
+
+    .profile-actions {
+        flex-direction: column;
+    }
+
+    .profile-button {
+        width: 100%;
+    }
+}
