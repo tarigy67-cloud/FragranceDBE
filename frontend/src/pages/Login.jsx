@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
+import "../styles/global.css"
 
 
 
@@ -45,11 +46,36 @@ export default function Login(){
 
 return(<>
 <h1>Login</h1>
-<input placeholder = "Email" onChange = {(e) => setEmail(e.target.value)}/><br/>
-<input placeholder = 'Password' onChange = {(e) => setPassword(e.target.value)}/> <br/>
-<button onClick = {handleSubmitButton}>Submit</button>
+<input
+    placeholder = "Email"
+    onChange = {(e) => setEmail(e.target.value)}
+    className="login-input"
+/><br/>
+<input
+    type = "password"
+    placeholder = 'Password'
+    onChange = {(e) => setPassword(e.target.value)}
+    className="login-input"
+/> <br/>
+<button
+    onClick = {handleSubmitButton}
+    className="login-button"
+>
+    Submit
+</button>
+<button
+    onClick={() => navigate("/forgot-password")}
+    className="login-button"
+>
+    Forgot Password?
+</button>
 <h3>Don't have an account?</h3>
-<button onClick = {() => navigate("/register")}>Create Account</button>
+<button
+    onClick = {() => navigate("/register")}
+    className="login-button"
+>
+    Create Account
+</button>
 
 
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "./Navbar";
+import "../styles/perfume.css";
 
 const ACCORD_COLORS = {
   woody: { bg: "#774414", text: "#FFFFFF" },
@@ -62,148 +63,36 @@ function Perfume() {
   if (!perfume) {
     return (
       <>
-        <style>{`
-          .loading {
-            text-align: center;
-            margin-top: 100px;
-            font-family: Arial, sans-serif;
-          }
-        `}</style>
-
         <h1 className="loading">Loading...</h1>
       </>
     );
   }
 
+
+  async function addToCollection() {
+    const token = localStorage.getItem("token");
+    const response = await fetch(
+        `http://localhost:9000/me/collection/${perfume.id}`,
+
+        {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+    );
+    if (!response.ok) {
+        const error = await response.json();
+        alert(error.detail);
+        return;
+    }
+    alert("Added to collection!");
+    navigate(-1)
+}
+
+
   return (
     <>
-      <style>{`
-        .perfume-page {
-          min-height: 100vh;
-          background: #f5f3f0;
-          padding: 50px 20px;
-          font-family: Arial, sans-serif;
-          color: #292524;
-        }
-
-        .perfume-container {
-          max-width: 1100px;
-          margin: auto;
-          background: #fff;
-          border-radius: 20px;
-          padding: 40px;
-          display: flex;
-          gap: 50px;
-          box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-        }
-
-        .perfume-image-container {
-          flex: 0 0 400px;
-          height: 500px;
-          background: #f8f6f3;
-          border-radius: 15px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        .perfume-image {
-          width: 90%;
-          height: 90%;
-          object-fit: contain;
-        }
-
-        .perfume-details {
-          flex: 1;
-        }
-
-        .perfume-brand {
-          color: #9a8065;
-          text-transform: uppercase;
-          letter-spacing: 2px;
-          font-weight: bold;
-          margin: 0 0 5px;
-        }
-
-        .perfume-name {
-          font-size: 42px;
-          margin: 5px 0 10px;
-        }
-
-        .perfume-info {
-          color: #777;
-          font-size: 16px;
-        }
-
-        .button-container {
-          display: flex;
-          gap: 12px;
-          margin: 25px 0 35px;
-        }
-
-        .collection-button {
-          padding: 12px 20px;
-          background: #292524;
-          color: #fff;
-          border: none;
-          border-radius: 8px;
-          cursor: pointer;
-        }
-
-        .wishlist-button {
-          padding: 12px 20px;
-          background: #fff;
-          color: #292524;
-          border: 1px solid #d6d3d1;
-          border-radius: 8px;
-          cursor: pointer;
-        }
-
-        .section {
-          margin-top: 30px;
-        }
-
-        .section-heading {
-          font-size: 18px;
-          margin-bottom: 12px;
-          padding-bottom: 8px;
-          border-bottom: 1px solid #e7e5e4;
-        }
-
-        .description {
-          color: #666;
-          line-height: 1.7;
-        }
-
-        .accord {
-          display: inline-block;
-          padding: 9px 16px;
-          border-radius: 20px;
-          margin: 4px;
-          font-size: 14px;
-          font-weight: 500;
-        }
-
-        .note-heading {
-          color: #9a8065;
-        }
-
-        .middle-heading,
-        .base-heading {
-          color: #9a8065;
-          margin-top: 20px;
-        }
-
-        .note {
-          display: inline-block;
-          background: #f1eee9;
-          padding: 8px 14px;
-          border-radius: 20px;
-          margin: 4px;
-          font-size: 14px;
-        }
-      `}</style>
-
       <Navbar />
 
       <div className="perfume-page">
@@ -232,7 +121,7 @@ function Perfume() {
             </p>
 
             <div className="button-container">
-              <button className="collection-button">
+              <button onClick = {addToCollection} className="collection-button">
                 + Add to Collection
               </button>
 

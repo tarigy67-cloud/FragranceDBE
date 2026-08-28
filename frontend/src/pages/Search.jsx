@@ -38,23 +38,28 @@ export default function Search(){
 
     <Navbar/>
     
+    <div className="search-page">
+
+      <h2>Perfumes </h2>
+
+      <div
+        className="search-perfume"
+        onClick = {() => navigate(`/perfume/${perfume.id}`)}
+      >
+        <img
+          className="search-perfume-image"
+          src={perfume.image}
+          alt={perfume.name}
+        />
+
+        <br/>
+
+        <p className="search-perfume-name">{perfume.name}</p>
+      </div>
 
 
-
-    <h2>Perfumes </h2>
-    <div onClick = {() => navigate(`/perfume/${perfume.id}`)}>
-    <img src={perfume.image} alt={perfume.name} />
-    <br/>
-    <p>{perfume.name}</p>
     </div>
-
-    <h2>Users but not right now </h2>
-    <div></div>
 
   </>)
 
 }
-
-
-
-

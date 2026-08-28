@@ -25,57 +25,6 @@ const Wishlist = () => {
 
   return (
     <>
-      <style>{`
-        .wishlist-container {
-          max-width: 900px;
-          margin: 40px auto;
-          padding: 0 20px;
-        }
-
-        .wishlist-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 30px;
-        }
-
-        .wishlist-header h1 {
-          margin: 0;
-        }
-
-        .create-button {
-          padding: 10px 16px;
-          border: none;
-          border-radius: 6px;
-          background-color: #222;
-          color: white;
-          cursor: pointer;
-        }
-
-        .wishlist-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-          gap: 20px;
-        }
-
-        .wishlist-card {
-          padding: 20px;
-          border: 1px solid #ddd;
-          border-radius: 10px;
-          background-color: #fff;
-          cursor: pointer;
-        }
-
-        .wishlist-card h3 {
-          margin: 0 0 8px 0;
-        }
-
-        .wishlist-card p {
-          margin: 0;
-          color: #666;
-        }
-      `}</style>
-
       <Navbar />
 
       <div className="wishlist-container">
