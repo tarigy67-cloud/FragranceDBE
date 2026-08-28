@@ -1,5 +1,5 @@
 import uuid
-from sqlalchemy import Column, String, Integer, JSON,ForeignKey, Table, Float
+from sqlalchemy import Column, String, Integer, JSON,ForeignKey, Table, Boolean,DateTime,Float
 from src.database import Base
 def generate_id():
     return str(uuid.uuid4())
@@ -13,6 +13,11 @@ class User(Base):
     hashed_password = Column(String,  nullable = False)
     profile_picture = Column(String, nullable=True)
     bio = Column(String, nullable=True)
+    is_verified = Column(Boolean, default=False, nullable=False)
+    verification_code = Column(String, nullable=True)
+    verification_code_expires = Column(DateTime, nullable=True)
+    reset_code = Column(String, nullable=True)
+    reset_code_expires = Column(DateTime, nullable=True)
 
 
 class Perfume(Base):
