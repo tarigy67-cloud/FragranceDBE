@@ -116,4 +116,54 @@ def edit_collection_note(
     session.refresh(item)
  
     return item
- 
+
+
+@router.get("/me/collection/{item_id}")
+def get_collection_item(
+    item_id: str,
+    current_user: User = Depends(get_current_user)
+):
+    item = session.query(PerfumeInCollection).filter(
+        PerfumeInCollection.id == item_id,
+        PerfumeInCollection.user_id == current_user.id
+    ).first()
+
+    if item is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Perfume not in collection"
+        )
+
+    return item
+
+
+# Edit the rating on a perfume in my collection
+@router.put("/me/collection/{item_id}/rating")
+def edit_collection_rating(
+    item_id: str,
+    rating: float,
+    current_user: User = Depends(get_current_user)
+):
+    item = session.query(PerfumeInCollection).filter(
+        PerfumeInCollection.id == item_id,
+        PerfumeInCollection.user_id == current_user.id
+    ).first()
+
+    if item is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Perfume not in collection"
+        )
+
+    if rating < 0 or rating > 10:
+        raise HTTPException(
+            status_code=400,
+            detail="Rating must be between 0 and 10"
+        )
+
+    item.rating = rating
+
+    session.commit()
+    session.refresh(item)
+
+    return item
