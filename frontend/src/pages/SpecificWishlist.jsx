@@ -32,49 +32,74 @@ export default function SpecificWishlist() {
 
 
     async function deleteWishlist(){
-        const response = await fetch(`http://localhost:9000/me/wishlists/${wishlistID}`,
+        const confirmed = window.confirm(
+            "Are you sure you want to delete this wishlist?"
+        )
+        if (!confirmed) {
+            return
+        }
+        const response = await fetch(
+            `http://localhost:9000/me/wishlists/${wishlistID}`,
             {
                 method: "DELETE",
-                headers:{
+                headers: {
                     Authorization: `Bearer ${token}`
-
                 },
             }
         )
-        if (!response.ok){
-                console.error(response)
+        if (!response.ok) {
+            console.error(response)
+            return
         }
         navigate(-1)
     }
 
+
+    
+
     return (
         <>
             <Navbar />
-        <button onClick = {() => {navigate(-1)}}> ←</button>
-        <button onClick = {deleteWishlist}>Delete Collection</button>
-            {wishlist && (
-                <>
-                    <h1>{wishlist.name}</h1>
 
-                    <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
+            <div className="specific-wishlist">
 
-                    {wishlist.perfumes.map((perfume) => (
+                <button onClick = {() => {navigate(-1)}}> ←</button>
+                <button onClick = {deleteWishlist}>Delete Wishlist</button>
+                <button onClick = {() => {navigate(`/changewishlistname/${wishlistID}`)}}>Change Wishlist Name</button>
 
-                        <div key={perfume.id} onClick={() => navigate(`/wishlistperfume/${wishlistID}/${perfume.id}`)}>
+                {wishlist && (
+                    <>
+                        <h1>{wishlist.name}</h1>
 
-                            <img  style={{ width: "250px" }} src={perfume.image} alt={perfume.name} />
+                        <div className="specific-wishlist-perfumes">
 
-                            <h2>{perfume.name}</h2>
+                        {wishlist.perfumes.map((perfume) => (
 
-                            <h3>{perfume.brand}</h3>
+                            <div
+                                key={perfume.id}
+                                className="specific-wishlist-perfume"
+                                onClick={() => navigate(`/wishlistperfume/${wishlistID}/${perfume.id}`)}
+                            >
+
+                                <img
+                                    className="specific-wishlist-image"
+                                    src={perfume.image}
+                                    alt={perfume.name}
+                                />
+
+                                <h2>{perfume.name}</h2>
+
+                                <h3>{perfume.brand}</h3>
+
+                            </div>
+
+                        ))}
 
                         </div>
+                    </>
+                )}
 
-                    ))}
-
-                    </div>
-                </>
-            )}
+            </div>
         </>
     )
 }

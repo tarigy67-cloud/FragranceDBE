@@ -50,62 +50,6 @@ export default function AddToWishlist() {
     
   return (
     <>
-      <style>{`
-        .wishlist-overlay {
-          position: fixed;
-          inset: 0;
-          background: rgba(0, 0, 0, 0.5);
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        .wishlist-modal {
-          position: relative;
-          background: white;
-          width: 400px;
-          padding: 30px;
-          border-radius: 15px;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .close-button {
-          position: absolute;
-          top: 10px;
-          right: 15px;
-          border: none;
-          background: none;
-          font-size: 24px;
-          cursor: pointer;
-        }
-
-        .wishlist-title {
-          margin-top: 0;
-          margin-bottom: 10px;
-        }
-
-        .wishlist-text {
-          color: #666;
-          margin-bottom: 25px;
-        }
-
-        .wishlist-option {
-          width: 100%;
-          padding: 15px;
-          margin-bottom: 10px;
-          border: 1px solid #ddd;
-          border-radius: 8px;
-          background: white;
-          text-align: left;
-          cursor: pointer;
-          font-size: 16px;
-        }
-
-        .wishlist-option:hover {
-          background: #f5f5f5;
-        }
-      `}</style>
-
       <div className="wishlist-overlay">
         <div className="wishlist-modal">
           <button

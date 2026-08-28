@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../styles/wishlist.css";
 
 export default function CreateWishlist() {
   const navigate = useNavigate();
@@ -36,42 +37,12 @@ export default function CreateWishlist() {
   };
 
   return (
-    <div
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        backgroundColor: "rgba(0, 0, 0, 0.5)",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        zIndex: 1000,
-      }}
-    >
-      <div
-        style={{
-          position: "relative",
-          backgroundColor: "white",
-          padding: "30px",
-          borderRadius: "12px",
-          width: "400px",
-          maxWidth: "90%",
-        }}
-      >
+    <div className="wishlist-overlay">
+      <div className="wishlist-modal">
         {/* X button */}
         <button
           onClick={() => navigate("/wishlist")}
-          style={{
-            position: "absolute",
-            top: "10px",
-            left: "10px",
-            border: "none",
-            background: "none",
-            fontSize: "24px",
-            cursor: "pointer",
-          }}
+          className="wishlist-close-button"
         >
           ×
         </button>
@@ -84,21 +55,10 @@ export default function CreateWishlist() {
             placeholder="Wishlist name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            style={{
-              width: "100%",
-              padding: "10px",
-              marginBottom: "15px",
-              boxSizing: "border-box",
-            }}
+            className="wishlist-input"
           />
 
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "flex-end",
-              gap: "10px",
-            }}
-          >
+          <div className="wishlist-submit-container">
             <button type="submit">
               Create
             </button>
