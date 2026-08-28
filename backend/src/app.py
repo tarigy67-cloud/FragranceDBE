@@ -23,7 +23,14 @@ app.include_router(perfumes.router)
 app.include_router(collection.router)
 app.include_router(profile.router)
 app.include_router(wishlists.router)
-#app.include_router(collection.router)
+
+
+from fastapi.staticfiles import StaticFiles
+app.mount(
+    "/profile_pictures",
+    StaticFiles(directory="uploads/profile_pictures"),
+    name="profile_pictures"
+)
 
 
 
