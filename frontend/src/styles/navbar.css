@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap');
+
+/* ============================================================
+   DESIGN TOKENS -- "Apothecary" theme
+   (Repeated at the top of every stylesheet in this folder so
+   each file is self-contained and order-independent.)
+   ============================================================ */
+:root {
+  --bg: #f5eee2;
+  --bg-alt: #efe4d2;
+  --surface: #fffaf2;
+  --surface-alt: #f1e5d3;
+
+  --ink: #2a1b13;
+  --ink-soft: #5d4a3d;
+  --muted: #9c8570;
+
+  --border: #e3d3ba;
+  --border-strong: #cfae7f;
+
+  --gold: #b8823f;
+  --gold-light: #d9ab6c;
+  --oxblood: #7a3226;
+  --oxblood-hover: #8f3c2c;
+
+  --nav-bg: #201713;
+  --nav-border: #3b2921;
+  --nav-ink: #f7eee4;
+
+  --danger: #a33b2c;
+  --danger-hover: #b8493a;
+  --success: #4c7a4f;
+
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 26px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 4px 14px rgba(63, 39, 25, 0.08);
+  --shadow-md: 0 10px 28px rgba(63, 39, 25, 0.12);
+  --shadow-lg: 0 20px 48px rgba(63, 39, 25, 0.16);
+
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+nav {
+    height: 78px;
+    padding: 0 45px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    background: var(--nav-bg);
+    border-bottom: 1px solid var(--nav-border);
+    box-shadow: var(--shadow-md);
+    color: var(--nav-ink);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav svg {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    color: var(--nav-ink);
+    transition: 0.2s;
+    flex-shrink: 0;
+}
+
+nav svg:hover {
+    color: var(--gold-light);
+    transform: scale(1.08);
+}
+
+nav img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.search {
+    flex: 1;
+    display: flex;
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+.search input {
+    flex: 1;
+    height: 42px;
+    padding: 0 16px;
+    margin: 0;
+    border: 1px solid #5a4134;
+    border-radius: 22px 0 0 22px;
+    background: #30221c;
+    color: #fff;
+    outline: none;
+}
+
+.search input::placeholder {
+    color: #bca99c;
+}
+
+.search input:focus {
+    border-color: var(--gold);
+    box-shadow: none;
+}
+
+.search button {
+    height: 42px;
+    padding: 0 20px;
+    border: none;
+    border-radius: 0 22px 22px 0;
+    background: var(--gold);
+    color: #241811;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.search button:hover {
+    background: var(--gold-light);
+    transform: none;
+}
+
+nav button {
+    padding: 10px 17px;
+    border: 1px solid #5a4134;
+    border-radius: 20px;
+    background: transparent;
+    color: var(--nav-ink);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+nav button:hover {
+    background: #382820;
+    border-color: var(--gold);
+    transform: none;
+}
+
+@media (max-width: 700px) {
+    nav {
+        padding: 0 15px;
+        gap: 10px;
+    }
+
+    .search {
+        max-width: none;
+    }
+
+    nav button {
+        display: none;
+    }
+}

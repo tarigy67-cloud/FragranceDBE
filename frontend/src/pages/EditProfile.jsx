@@ -1,18 +1,21 @@
 import Navbar from "./Navbar";
-import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import {useNavigate} from "react-router-dom";
+import {useState,useEffect} from "react";
 import "../styles/editprofile.css";
+
+
 
 export default function EditProfile() {
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState("");
-  const [bio, setBio] = useState("");
-  const [profilePicture, setProfilePicture] = useState(null);
-  const [currentPicture, setCurrentPicture] = useState("");
+  const [username,setUsername] = useState("");
+  const [bio,setBio] = useState("");
+  const [profilePicture,setProfilePicture] = useState(null);
 
   useEffect(() => {
+
     async function profileInformation() {
+
       const token = localStorage.getItem("token");
 
       const response = await fetch("http://localhost:9000/me/profile", {
@@ -29,17 +32,18 @@ export default function EditProfile() {
 
       setUsername(data.username);
       setBio(data.bio || "");
-      setCurrentPicture(data.profile_picture || "");
     }
 
     profileInformation();
+
   }, []);
 
-  async function editProfile() {
+  async function editProfile(){
+
     const token = localStorage.getItem("token");
 
     const response = await fetch(
-      `http://localhost:9000/me/account?username=${encodeURIComponent(username)}&bio=${encodeURIComponent(bio)}`,
+      `http://localhost:9000/me/account?username=${username}&bio=${bio}`,
       {
         method: "PUT",
         headers: {
@@ -48,7 +52,7 @@ export default function EditProfile() {
       }
     );
 
-    if (!response.ok) {
+    if (!response.ok){
       alert("Error editing profile");
       return;
     }
@@ -56,13 +60,15 @@ export default function EditProfile() {
     navigate("/profile");
   }
 
-  async function uploadProfilePicture() {
-    if (!profilePicture) {
+  async function uploadProfilePicture(){
+
+    if (!profilePicture){
       alert("Choose a picture first");
       return;
     }
 
     const token = localStorage.getItem("token");
+
     const formData = new FormData();
 
     formData.append("file", profilePicture);
@@ -78,7 +84,7 @@ export default function EditProfile() {
       }
     );
 
-    if (!response.ok) {
+    if (!response.ok){
       alert("Error uploading picture");
       return;
     }
@@ -90,76 +96,62 @@ export default function EditProfile() {
     <>
       <Navbar />
 
-      <div className="edit-profile">
-        <div className="edit-profile-box">
+      <h1>Edit Profile</h1>
 
-          <h1>Edit Profile</h1>
+      <div className="edit-profile-section">
 
-          <p className="edit-profile-subtitle">
-            Update your profile information
-          </p>
+        <p>Username</p>
 
-          <p>Username</p>
+        <input
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          className="edit-profile-input"
+        />
 
-          <input
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="Username"
-          />
+        <p>Bio</p>
 
-          <p>Bio</p>
+        <input
+          value={bio}
+          onChange={(e) => setBio(e.target.value)}
+          className="edit-profile-input"
+        />
 
-          <textarea
-            value={bio}
-            onChange={(e) => setBio(e.target.value)}
-            placeholder="Tell people a little about yourself..."
-          />
+        <button
+          onClick={editProfile}
+          className="edit-profile-button"
+        >
+          Save Profile
+        </button>
 
-          <div className="profile-picture-section">
-
-            {currentPicture ? (
-              <img
-                className="profile-picture-preview"
-                src={`http://localhost:9000${currentPicture}`}
-                alt="Profile"
-              />
-            ) : (
-              <div className="profile-picture-preview"></div>
-            )}
-
-            <p>Profile Picture</p>
-
-            <input
-              type="file"
-              accept="image/*"
-              onChange={(e) =>
-                setProfilePicture(e.target.files[0])
-              }
-            />
-
-            <button onClick={uploadProfilePicture}>
-              Upload Picture
-            </button>
-
-          </div>
-
-          <div className="edit-profile-buttons">
-
-            <button onClick={editProfile}>
-              Save Changes
-            </button>
-
-            <button
-              className="cancel-button"
-              onClick={() => navigate("/profile")}
-            >
-              Cancel
-            </button>
-
-          </div>
-
-        </div>
       </div>
+
+      <div className="edit-profile-section">
+
+        <p>Profile Picture</p>
+
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => setProfilePicture(e.target.files[0])}
+          className="edit-profile-file"
+        />
+
+        <button
+          onClick={uploadProfilePicture}
+          className="edit-profile-button"
+        >
+          Upload Picture
+        </button>
+
+      </div>
+
+      <button
+        onClick={() => navigate("/profile")}
+        className="edit-profile-cancel"
+      >
+        Cancel
+      </button>
+
     </>
   );
 }

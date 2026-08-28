@@ -1,0 +1,380 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap');
+
+/* ============================================================
+   DESIGN TOKENS -- "Apothecary" theme
+   (Repeated at the top of every stylesheet in this folder so
+   each file is self-contained and order-independent.)
+   ============================================================ */
+:root {
+  --bg: #f5eee2;
+  --bg-alt: #efe4d2;
+  --surface: #fffaf2;
+  --surface-alt: #f1e5d3;
+
+  --ink: #2a1b13;
+  --ink-soft: #5d4a3d;
+  --muted: #9c8570;
+
+  --border: #e3d3ba;
+  --border-strong: #cfae7f;
+
+  --gold: #b8823f;
+  --gold-light: #d9ab6c;
+  --oxblood: #7a3226;
+  --oxblood-hover: #8f3c2c;
+
+  --nav-bg: #201713;
+  --nav-border: #3b2921;
+  --nav-ink: #f7eee4;
+
+  --danger: #a33b2c;
+  --danger-hover: #b8493a;
+  --success: #4c7a4f;
+
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 26px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 4px 14px rgba(63, 39, 25, 0.08);
+  --shadow-md: 0 10px 28px rgba(63, 39, 25, 0.12);
+  --shadow-lg: 0 20px 48px rgba(63, 39, 25, 0.16);
+
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.perfume-page {
+    min-height: 100vh;
+    padding: 35px 6% 80px;
+    background: var(--bg);
+    color: var(--ink);
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 20px;
+    padding: 9px 16px;
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--ink-soft);
+    font-weight: 600;
+}
+
+.back-button:hover {
+    background: var(--surface);
+    border-color: var(--gold);
+    color: var(--ink);
+}
+
+.perfume-container {
+    max-width: 1180px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 430px 1fr;
+    gap: 55px;
+    padding: 45px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+.perfume-image-container {
+    height: 570px;
+    border-radius: 22px;
+    background: linear-gradient(145deg, var(--surface-alt), var(--surface));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.perfume-image {
+    width: 92%;
+    height: 92%;
+    object-fit: contain;
+    transition: 0.3s;
+}
+
+.perfume-image:hover {
+    transform: scale(1.04);
+}
+
+.perfume-brand {
+    margin: 10px 0 7px;
+    color: var(--gold);
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.perfume-name {
+    margin: 0;
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: 46px;
+    line-height: 1.05;
+}
+
+.perfume-info {
+    margin: 14px 0 30px;
+    color: var(--muted);
+    font-size: 15px;
+}
+
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 35px;
+}
+
+.collection-button,
+.wishlist-button,
+.delete-button,
+.delete-wishlist-button {
+    padding: 12px 19px;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.collection-button {
+    border: none;
+    background: var(--oxblood);
+    color: white;
+}
+
+.collection-button:hover {
+    background: var(--oxblood-hover);
+    transform: translateY(-2px);
+}
+
+.wishlist-button {
+    background: var(--surface);
+    border: 1px solid var(--border-strong);
+    color: var(--ink-soft);
+}
+
+.wishlist-button:hover {
+    background: var(--surface-alt);
+    transform: translateY(-2px);
+}
+
+.delete-button,
+.delete-wishlist-button {
+    background: transparent;
+    border: 1px solid var(--danger);
+    color: var(--danger);
+}
+
+.delete-button:hover,
+.delete-wishlist-button:hover {
+    background: var(--danger);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.section {
+    margin-top: 32px;
+}
+
+.section-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.section-title-row .section-heading {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.edit-button {
+    padding: 6px 14px;
+    font-size: 12px;
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--ink-soft);
+}
+
+.edit-button:hover {
+    background: var(--surface-alt);
+    transform: none;
+}
+
+.section-heading {
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--border);
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: 19px;
+}
+
+.description {
+    color: var(--ink-soft);
+    line-height: 1.8;
+}
+
+.accord {
+    display: inline-block;
+    padding: 8px 15px;
+    margin: 4px 4px 4px 0;
+    border-radius: var(--radius-pill);
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    background: var(--accord-bg, var(--surface-alt));
+    color: var(--accord-text, var(--ink));
+}
+
+.note-heading,
+.middle-heading,
+.base-heading {
+    margin-top: 20px;
+    color: var(--gold);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.note {
+    display: inline-block;
+    margin: 4px 4px 4px 0;
+    padding: 8px 14px;
+    border-radius: 15px;
+    background: var(--surface-alt);
+    color: var(--ink-soft);
+    font-size: 13px;
+}
+
+/* --- My Notes / My Rating editors --- */
+
+.notes-input {
+    width: 100%;
+    min-height: 110px;
+    padding: 14px;
+    margin-bottom: 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.6;
+    resize: vertical;
+}
+
+.edit-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.save-button {
+    background: var(--success);
+    border: none;
+    color: white;
+    padding: 11px 20px;
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.save-button:hover {
+    background: #3f6942;
+}
+
+.save-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.cancel-button {
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    color: var(--ink-soft);
+    padding: 11px 20px;
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.cancel-button:hover {
+    background: var(--bg-alt);
+    transform: none;
+}
+
+.rating-editor {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.rating-input-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.rating-input {
+    width: 90px;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    color: var(--ink);
+}
+
+.rating-out-of {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.rating-help {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.rating {
+    display: inline-flex;
+    align-items: center;
+}
+
+.rating-number {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: var(--radius-pill);
+    background: var(--surface-alt);
+    color: var(--ink);
+    font-weight: 700;
+    font-family: var(--font-display);
+    font-size: 15px;
+}
+
+@media (max-width: 850px) {
+    .perfume-container {
+        grid-template-columns: 1fr;
+        padding: 25px;
+    }
+
+    .perfume-image-container {
+        height: 420px;
+    }
+
+    .perfume-name {
+        font-size: 36px;
+    }
+}
