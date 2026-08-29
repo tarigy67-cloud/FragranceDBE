@@ -287,7 +287,7 @@ export default function CollectionPerfume() {
               <button
                 className="wishlist-button"
                 onClick={() =>
-                  navigate(`/addtowishlist/${perfume.id}`)
+                  navigate(`/addtowishlist/${perfume.original_id}`)
                 }
               >
                 Add to Wishlist
