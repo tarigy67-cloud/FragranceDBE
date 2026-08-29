@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends
 from src.database import session
-from src.models import User, Wishlist, Perfume, wishlist_items, PerfumeInCollection
+from src.models import User,  Perfume,  PerfumeInCollection
 from src.security import get_current_user
  
 router = APIRouter()

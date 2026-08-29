@@ -27,6 +27,10 @@ def get_my_profile(user: User = Depends(get_current_user)):
 @router.get('/profile/{username}')
 def get_other_profile(username):
     user = session.query(User).filter(User.username == username).first()
+
+    if user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+
     amount_of_perfumes = session.query(PerfumeInCollection).filter(PerfumeInCollection.user_id == user.id).count()
     amount_of_wishlists = "this function will get filled out soon"
     return({
