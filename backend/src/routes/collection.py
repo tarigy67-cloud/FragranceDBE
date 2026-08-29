@@ -36,6 +36,7 @@ def add_to_collection(
         )
  
     collection_item = PerfumeInCollection(
+        original_id=perfume.id,
         name=perfume.name,
         brand=perfume.brand,
         image=perfume.image,

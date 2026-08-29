@@ -39,6 +39,7 @@ class Perfume(Base):
 class PerfumeInCollection(Base):
     __tablename__ = 'perfumes_in_collection'
     id = Column(String,primary_key = True, default = generate_id)
+    original_id = Column(String, ForeignKey("perfumes.id"), nullable=True)
     name = Column(String, nullable=False)
     brand = Column(String, nullable=False)
     image = Column(String, nullable=True)
@@ -77,4 +78,3 @@ wishlist_items = Table(
     Column("wishlist_id", String, ForeignKey("wishlists.id"), primary_key=True),
     Column("perfume_id", String, ForeignKey("perfumes.id"), primary_key=True)
 )
-
