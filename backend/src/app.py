@@ -1,8 +1,6 @@
 from fastapi import FastAPI
 from src.database import create_db
-from src.routes import accounts,perfumes,collection,profile,wishlists,collection
-from src.database import session
-from src.models import Perfume
+from src.routes import accounts,perfumes,collection,profile,wishlists
 from fastapi.middleware.cors import CORSMiddleware
 
 

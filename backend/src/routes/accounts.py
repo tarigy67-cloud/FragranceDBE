@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, Depends
-from src.schemas import UserCreate, UserResponse, UserLogin, LoginResponse
+from src.schemas import UserCreate, UserLogin, LoginResponse
 from src.database import session
 from src.models import User
 from src.security import hash_password, verify_password, get_current_user, create_access_token
@@ -21,14 +21,14 @@ def create_account(user: UserCreate):
     ).first()
 
     if existing_username:
-        raise HTTPException(status_code=404, detail="Username Already Taken")
+        raise HTTPException(status_code=409, detail="Username Already Taken")
 
     existing_email = session.query(User).filter(
         User.email == user.email
     ).first()
 
     if existing_email:
-        raise HTTPException(status_code=404, detail="Email Already Taken")
+        raise HTTPException(status_code=409, detail="Email Already Taken")
 
     verification_code = str(random.randint(100000, 999999))
 
@@ -97,7 +97,6 @@ def delete_user(password: str, user: User = Depends(get_current_user)):
 
 
 @router.put('/me/account')
-
 def edit_account(
     username: str = None,
     email: str = None,
@@ -122,9 +121,6 @@ def edit_account(
 
 
 
-@router.get('/accounts')
-def get_all_accounts():
-    return session.query(User).all()
 
 
 #Email verification
