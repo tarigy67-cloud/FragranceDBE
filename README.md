@@ -1,4 +1,4 @@
-# Perfume Project
+# Perfume Social Platform
 
 A full-stack web app for tracking and discovering perfumes. Register an account, search for
 perfumes (backed by a live scraper for anything not already in the database), add them to your
