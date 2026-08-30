@@ -38,7 +38,7 @@ export default function Collection(){
     return(
         <>
 
-            <h1>User Collection</h1>
+            <h1>My Collection</h1>
 
             <div className="collection-container">
 
